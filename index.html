@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Your Name] — Systems &amp; Control Engineer · CV</title>
+<meta name="description" content="Engineering CV and local competency reference matrix for [Your Name] — aerospace, robotics and control systems.">
+<meta name="color-scheme" content="dark">
+<!-- No cookies, no trackers, no third-party analytics are loaded by this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   0. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --navy-950:#060B14;
+  --navy-900:#0C1524;
+  --navy-850:#0F1B2C;
+  --navy-800:#132339;
+  --line:#1E3049;
+  --line-soft:#16283e;
+  --grid-line: rgba(94,234,212,.07);
+  --cyan:#5EEAD4;
+  --cyan-dim:#2B6F66;
+  --cyan-ink:#0A1F1C;
+  --paper:#E9EEF3;
+  --paper-dim:#C6D2DD;
+  --muted:#8CA0B3;
+  --muted-2:#5E7286;
+  --amber:#FFB13C;
+  --amber-dim:#5C4116;
+  --amber-ink:#241a06;
+  --danger:#FF6B6B;
+  --ok:#7EE2B8;
+  --radius-sm:3px;
+  --radius-md:5px;
+  --font-display:'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body:'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-mono:'IBM Plex Mono', 'Consolas', monospace;
+  --maxw:1040px;
+  --focus-ring: 3px solid var(--cyan);
+}
+
+/* ============================================================
+   1. RESET
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+body{ margin:0; }
+img,svg{ display:block; max-width:100%; }
+button,input{ font:inherit; color:inherit; }
+ul{ margin:0; padding:0; list-style:none; }
+h1,h2,h3,h4,p{ margin:0; }
+a{ color:inherit; }
+
+/* ============================================================
+   2. BASE / BLUEPRINT BACKDROP
+   ============================================================ */
+body{
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+    var(--navy-950);
+  color:var(--paper);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+/* Visible keyboard focus everywhere (EAA / WCAG 2.4.7) */
+a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
+  outline:var(--focus-ring); outline-offset:2px; border-radius:2px;
+}
+
+/* Skip link */
+.skip-link{
+  position:absolute; left:0; top:-48px; z-index:100;
+  background:var(--cyan); color:var(--cyan-ink); font-family:var(--font-mono);
+  font-weight:600; padding:12px 18px; text-decoration:none; transition:top .15s ease;
+}
+.skip-link:focus{ top:0; }
+
+/* corner tick marks — schematic sheet motif */
+.ticks{ position:relative; }
+.ticks::before,.ticks::after{
+  content:""; position:absolute; width:14px; height:14px; border:1px solid var(--cyan-dim); opacity:.7;
+}
+.ticks::before{ top:0; left:0; border-right:none; border-bottom:none; }
+.ticks::after{ bottom:0; right:0; border-left:none; border-top:none; }
+
+/* ============================================================
+   3. TITLE BLOCK / HEADER  (signature element — engineering
+      drawing title block doubling as the page's identity strip)
+   ============================================================ */
+.titleblock{ border-bottom:1px solid var(--line); background:var(--navy-900); }
+.titleblock-inner{ padding:28px 24px 0; }
+.tb-top{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px; }
+.tb-name{ font-family:var(--font-display); font-weight:700; font-size:clamp(2rem,4.6vw,3.1rem); letter-spacing:-.01em; }
+.tb-role{ font-family:var(--font-mono); color:var(--cyan); font-size:.95rem; letter-spacing:.04em; margin-top:6px; }
+.tb-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.btn{
+  font-family:var(--font-mono); font-size:.82rem; letter-spacing:.03em; font-weight:600;
+  padding:10px 16px; border-radius:var(--radius-sm); border:1px solid var(--line);
+  background:transparent; color:var(--paper); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+}
+.btn:hover{ border-color:var(--cyan-dim); }
+.btn-primary{ background:var(--cyan); color:var(--cyan-ink); border-color:var(--cyan); }
+.btn-primary:hover{ background:#7ff0e0; }
+.btn-amber{ background:var(--amber); color:var(--amber-ink); border-color:var(--amber); }
+.btn-ghost{ border-color:var(--line); }
+.btn-danger{ border-color:var(--danger); color:var(--danger); }
+
+/* title-block strip: drafting-table style bordered cells */
+.tb-strip{
+  margin-top:22px; display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  border:1px solid var(--line); border-bottom:none; font-family:var(--font-mono); font-size:.75rem;
+}
+.tb-cell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:9px 12px; }
+.tb-cell:last-child{ border-right:none; }
+.tb-cell span{ display:block; color:var(--muted-2); text-transform:uppercase; letter-spacing:.08em; font-size:.65rem; margin-bottom:3px; }
+.tb-cell strong{ color:var(--paper); font-weight:600; }
+
+/* page nav */
+.pagenav{ padding:14px 0 22px; }
+.pagenav ul{ display:flex; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:.78rem; }
+.pagenav a{ text-decoration:none; color:var(--muted); border-bottom:1px solid transparent; padding-bottom:2px; }
+.pagenav a:hover{ color:var(--cyan); border-color:var(--cyan-dim); }
+
+/* ============================================================
+   4. SECTION SCAFFOLD
+   ============================================================ */
+main section{ padding:56px 0; border-bottom:1px solid var(--line-soft); }
+main section:last-of-type{ border-bottom:none; }
+.eyebrow{ font-family:var(--font-mono); color:var(--cyan); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+.eyebrow::after{ content:""; height:1px; flex:1; background:var(--line); }
+h2.section-title{ font-family:var(--font-display); font-size:clamp(1.4rem,2.6vw,1.9rem); font-weight:600; margin-bottom:22px; }
+
+/* ============================================================
+   5. PROFILE
+   ============================================================ */
+.profile-grid{ display:grid; grid-template-columns:2fr 1fr; gap:40px; }
+.profile-lead{ font-size:1.05rem; color:var(--paper-dim); max-width:60ch; }
+.competency-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.tag{ font-family:var(--font-mono); font-size:.72rem; border:1px solid var(--line); color:var(--muted); padding:5px 10px; border-radius:99px; }
+.profile-meta dl{ display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:.88rem; }
+.profile-meta dt{ color:var(--muted-2); font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; padding-top:2px; }
+.profile-meta dd{ margin:0; color:var(--paper-dim); }
+@media (max-width:760px){ .profile-grid{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   6. SEARCH CONSOLE + MATRIX
+   ============================================================ */
+.console{
+  border:1px solid var(--line); background:var(--navy-900); border-radius:var(--radius-md);
+  padding:4px; display:flex; align-items:center; gap:10px;
+}
+.console-icon{ padding-left:12px; color:var(--muted-2); font-family:var(--font-mono); font-size:.85rem; user-select:none; }
+#competency-search{
+  flex:1; background:transparent; border:none; color:var(--paper); padding:13px 6px;
+  font-family:var(--font-mono); font-size:.95rem;
+}
+#competency-search::placeholder{ color:var(--muted-2); }
+#competency-search:focus{ outline:none; }
+.console:focus-within{ border-color:var(--cyan-dim); box-shadow:0 0 0 1px var(--cyan-dim) inset; }
+.console-clear{ margin-right:4px; background:transparent; border:1px solid var(--line); color:var(--muted); font-family:var(--font-mono); font-size:.72rem; padding:6px 10px; border-radius:var(--radius-sm); cursor:pointer; }
+.console-clear:hover{ color:var(--paper); border-color:var(--cyan-dim); }
+
+.search-status{ font-family:var(--font-mono); font-size:.76rem; color:var(--muted-2); margin:12px 2px 20px; }
+.search-status strong{ color:var(--cyan); }
+
+.matrix{ display:grid; gap:10px; }
+.matrix-row{
+  display:grid; grid-template-columns:1.1fr 1fr auto; gap:14px; align-items:center;
+  border:1px solid var(--line); background:var(--navy-900); border-radius:var(--radius-sm);
+  padding:14px 16px;
+}
+.matrix-row .m-name{ font-weight:600; font-size:.95rem; }
+.matrix-row .m-cat{ font-family:var(--font-mono); font-size:.7rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:.06em; margin-top:3px; }
+.matrix-row .m-doc{ font-family:var(--font-mono); font-size:.8rem; color:var(--cyan); }
+.matrix-row .m-doc-label{ display:block; font-family:var(--font-mono); font-size:.65rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px; }
+.matrix-row .m-doctype{ justify-self:end; font-family:var(--font-mono); font-size:.68rem; border:1px solid var(--line); color:var(--muted); padding:4px 9px; border-radius:99px; white-space:nowrap; }
+.matrix-row mark{ background:var(--cyan); color:var(--cyan-ink); border-radius:2px; padding:0 1px; }
+.matrix-empty{ font-family:var(--font-mono); font-size:.85rem; color:var(--muted); padding:22px 4px; }
+@media (max-width:640px){
+  .matrix-row{ grid-template-columns:1fr; }
+  .matrix-row .m-doctype{ justify-self:start; }
+}
+
+/* ============================================================
+   7. EDUCATION TIMELINE
+   ============================================================ */
+.timeline{ display:grid; gap:0; border-left:1px solid var(--line); padding-left:26px; }
+.tl-item{ position:relative; padding-bottom:30px; }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-item::before{ content:""; position:absolute; left:-31px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--navy-950); border:2px solid var(--cyan); }
+.tl-head{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; align-items:baseline; }
+.tl-degree{ font-family:var(--font-display); font-weight:600; font-size:1.05rem; }
+.tl-dates{ font-family:var(--font-mono); font-size:.75rem; color:var(--muted-2); white-space:nowrap; }
+.tl-inst{ color:var(--cyan); font-size:.9rem; margin-top:2px; }
+.tl-detail{ color:var(--paper-dim); font-size:.9rem; margin-top:8px; max-width:65ch; }
+.tl-honor{ display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-family:var(--font-mono); font-size:.72rem; color:var(--amber); border:1px solid var(--amber-dim); padding:5px 10px; border-radius:99px; }
+
+/* ============================================================
+   8. PROJECTS
+   ============================================================ */
+.project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.project-card{ border:1px solid var(--line); background:var(--navy-900); border-radius:var(--radius-md); padding:20px; display:flex; flex-direction:column; gap:10px; }
+.project-card h3{ font-family:var(--font-display); font-size:1.05rem; font-weight:600; }
+.project-card p{ color:var(--paper-dim); font-size:.88rem; }
+.project-stack{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:8px; }
+.project-stack span{ font-family:var(--font-mono); font-size:.68rem; color:var(--muted); border:1px solid var(--line); padding:3px 8px; border-radius:99px; }
+
+/* ============================================================
+   9. VAULT
+   ============================================================ */
+.vault-section{ background:linear-gradient(180deg, var(--navy-900), var(--navy-950)); }
+.vault-notice{
+  border:1px solid var(--amber-dim); background:rgba(255,177,60,.06); border-radius:var(--radius-md);
+  padding:16px 18px; display:flex; gap:12px; align-items:flex-start; margin-bottom:22px;
+}
+.vault-notice .flag{ font-family:var(--font-mono); color:var(--amber); font-size:.75rem; font-weight:700; letter-spacing:.06em; white-space:nowrap; padding-top:2px; }
+.vault-notice p{ font-size:.85rem; color:var(--paper-dim); margin:0; }
+.vault-notice code{ font-family:var(--font-mono); color:var(--amber); }
+
+.vault-panel{ border:1px solid var(--line); border-radius:var(--radius-md); background:var(--navy-900); padding:24px; }
+.vault-locked{ text-align:center; padding:34px 16px; }
+.vault-locked .lockglyph{ font-family:var(--font-mono); font-size:1.6rem; color:var(--muted-2); margin-bottom:12px; }
+.vault-locked p{ color:var(--muted); font-size:.88rem; max-width:46ch; margin:8px auto 18px; }
+
+.pin-form{ display:flex; flex-direction:column; gap:14px; max-width:340px; margin:0 auto; }
+.field label{ display:block; font-family:var(--font-mono); font-size:.72rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; text-align:left; }
+.field input{
+  width:100%; background:var(--navy-950); border:1px solid var(--line); color:var(--paper);
+  padding:11px 12px; border-radius:var(--radius-sm); font-family:var(--font-mono); letter-spacing:.2em;
+}
+.field input:focus{ outline:none; border-color:var(--cyan-dim); }
+.field-error{ color:var(--danger); font-size:.76rem; font-family:var(--font-mono); min-height:1em; text-align:left; }
+
+.vault-unlocked-head{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px; }
+.vault-status{ font-family:var(--font-mono); font-size:.76rem; color:var(--ok); display:flex; align-items:center; gap:8px; }
+.vault-status .dot{ width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 3px rgba(126,226,184,.15); }
+
+.dropzone{
+  border:1.5px dashed var(--line); border-radius:var(--radius-md); padding:32px 18px; text-align:center;
+  color:var(--muted); transition:border-color .15s ease, background .15s ease;
+}
+.dropzone.is-dragover{ border-color:var(--cyan); background:rgba(94,234,212,.05); color:var(--paper); }
+.dropzone p{ font-size:.86rem; margin-bottom:12px; }
+.dz-sub{ font-family:var(--font-mono); font-size:.7rem; color:var(--muted-2); margin-top:10px; }
+.visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
+.vault-status-line{ font-family:var(--font-mono); font-size:.78rem; color:var(--muted); min-height:1.2em; margin-top:12px; }
+.vault-status-line[data-tone="error"]{ color:var(--danger); }
+.vault-status-line[data-tone="ok"]{ color:var(--ok); }
+
+.doc-list{ margin-top:22px; display:grid; gap:10px; }
+.doc-row{ display:grid; grid-template-columns:1fr auto auto auto; gap:12px; align-items:center; border:1px solid var(--line); border-radius:var(--radius-sm); padding:12px 14px; background:var(--navy-950); }
+.doc-name{ font-size:.86rem; font-weight:600; overflow-wrap:anywhere; }
+.doc-meta{ font-family:var(--font-mono); font-size:.68rem; color:var(--muted-2); margin-top:3px; }
+.doc-btn{ font-family:var(--font-mono); font-size:.7rem; padding:7px 11px; border-radius:var(--radius-sm); border:1px solid var(--line); background:transparent; color:var(--paper); cursor:pointer; }
+.doc-btn:hover{ border-color:var(--cyan-dim); }
+.doc-btn.danger:hover{ border-color:var(--danger); color:var(--danger); }
+.doc-empty{ font-family:var(--font-mono); font-size:.8rem; color:var(--muted-2); padding:14px 2px; }
+@media (max-width:600px){ .doc-row{ grid-template-columns:1fr; justify-items:start; } }
+
+.unsupported-box{ border:1px solid var(--danger); border-radius:var(--radius-md); padding:18px; font-size:.85rem; color:var(--paper-dim); }
+
+/* ============================================================
+   10. MODAL DIALOG (pin overlay reuses .vault-locked in-panel;
+       this modal is used for the confirmation on delete)
+   ============================================================ */
+.modal-backdrop{ position:fixed; inset:0; background:rgba(3,7,13,.72); display:flex; align-items:center; justify-content:center; padding:20px; z-index:200; }
+.modal{ background:var(--navy-900); border:1px solid var(--line); border-radius:var(--radius-md); padding:22px; max-width:380px; width:100%; }
+.modal h3{ font-family:var(--font-display); font-size:1.05rem; margin-bottom:8px; }
+.modal p{ color:var(--paper-dim); font-size:.86rem; margin-bottom:18px; }
+.modal-actions{ display:flex; gap:10px; justify-content:flex-end; }
+.hidden{ display:none !important; }
+
+/* ============================================================
+   11. FOOTER
+   ============================================================ */
+footer{ padding:34px 0 60px; }
+.footer-grid{ display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between; align-items:flex-start; font-family:var(--font-mono); font-size:.72rem; color:var(--muted-2); }
+.footer-grid p{ max-width:52ch; }
+.footer-grid a{ color:var(--muted-2); }
+
+/* print */
+@media print{
+  body{ background:#fff !important; color:#111 !important; }
+  .pagenav, #vault, .tb-actions, .console-clear{ display:none !important; }
+  a{ text-decoration:none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- ============================================================
+     TITLE BLOCK / HEADER
+     ============================================================ -->
+<header class="titleblock">
+  <div class="wrap titleblock-inner">
+    <div class="tb-top">
+      <div>
+        <h1 class="tb-name">[Your Name]</h1>
+        <p class="tb-role">Systems &amp; Control Engineer — Aerospace / Robotics · MBSE, Guidance &amp; Embedded Software</p>
+      </div>
+      <div class="tb-actions">
+        <a class="btn btn-ghost" href="mailto:[your.email@example.com]">Email</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/[your-handle]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/[your-handle]" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+
+    <div class="tb-strip" role="note" aria-label="Document title block">
+      <div class="tb-cell"><span>Document</span><strong>Curriculum Vitae</strong></div>
+      <div class="tb-cell"><span>Discipline</span><strong>Control &amp; Aerospace Systems</strong></div>
+      <div class="tb-cell"><span>Based in</span><strong>Strasbourg, FR</strong></div>
+      <div class="tb-cell"><span>Rev.</span><strong data-doc-rev>2026-08</strong></div>
+      <div class="tb-cell"><span>Status</span><strong>Seeking apprenticeship, IDF</strong></div>
+    </div>
+
+    <nav class="pagenav" aria-label="Page sections">
+      <ul>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#competencies">Competencies</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#vault">Document vault</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content" class="wrap">
+
+  <!-- ============================================================
+       1. PROFILE SUMMARY
+       ============================================================ -->
+  <section id="profile" aria-labelledby="profile-title">
+    <p class="eyebrow">01 — Profile</p>
+    <h2 class="section-title" id="profile-title">Profile summary</h2>
+    <div class="profile-grid">
+      <div>
+        <p class="profile-lead">
+          Control- and systems-engineering student specialising in guidance, navigation and control for
+          fixed-wing UAVs, with a Model-Based Systems Engineering (MBSE) workflow spanning low-fidelity
+          MATLAB/Simulink baselines through to high-fidelity integration. Comfortable moving between
+          first-principles controller design, embedded implementation, and the systems-engineering
+          documentation that ties requirements to test evidence. Currently completing a Master in
+          Automatique et Systèmes Intelligents (E3A-SIAA) as an apprentice, after coursework at TUM,
+          Paris-Saclay and Strasbourg.
+        </p>
+        <div class="competency-tags" aria-label="Headline competencies">
+          <span class="tag">Guidance, Navigation &amp; Control</span>
+          <span class="tag">MBSE</span>
+          <span class="tag">MATLAB / Simulink</span>
+          <span class="tag">Embedded C</span>
+          <span class="tag">Robotics Systems</span>
+        </div>
+      </div>
+      <div class="profile-meta">
+        <dl>
+          <dt>Location</dt><dd>Strasbourg &amp; Île-de-France, France</dd>
+          <dt>Track</dt><dd>Master E3A-SIAA, Univ. d'Évry / CFA EVE</dd>
+          <dt>Programme</dt><dd>2026–2028, apprenticeship</dd>
+          <dt>Target sectors</dt><dd>Aerospace, mobile/terrestrial robotics, collaborative &amp; humanoid robotics</dd>
+          <dt>Languages</dt><dd>[French — native], [English — fluent], [German — ...]</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. COMPETENCY SEARCH + REFERENCE MATRIX
+       ============================================================ -->
+  <section id="competencies" aria-labelledby="competencies-title">
+    <p class="eyebrow">02 — Local recovery search</p>
+    <h2 class="section-title" id="competencies-title">Core competencies &amp; reference matrix</h2>
+
+    <form role="search" aria-label="Search competencies" onsubmit="return false;">
+      <label for="competency-search" class="visually-hidden">Competency search — type to filter competencies and their source documents</label>
+      <div class="console">
+        <span class="console-icon" aria-hidden="true">QUERY&gt;</span>
+        <input
+          type="search"
+          id="competency-search"
+          name="competency-search"
+          placeholder="Search a competency, e.g. “guidance”, “embedded”, “world models”…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="search-status">
+        <button type="button" class="console-clear" id="clear-search" hidden>Clear</button>
+      </div>
+    </form>
+    <p class="search-status" id="search-status" role="status" aria-live="polite">
+      Showing <strong id="match-count">0</strong> of <strong id="total-count">0</strong> competencies. All matching runs locally in your browser — nothing you type here is stored, logged, or sent anywhere.
+    </p>
+
+    <div class="matrix" id="matrix" aria-label="Competency to source-document matrix"></div>
+    <template id="matrix-empty-template">
+      <p class="matrix-empty">No competency matches that query. Try a shorter or different term.</p>
+    </template>
+  </section>
+
+  <!-- ============================================================
+       3. EDUCATION
+       ============================================================ -->
+  <section id="education" aria-labelledby="education-title">
+    <p class="eyebrow">03 — Education</p>
+    <h2 class="section-title" id="education-title">Education</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-degree">M.Sc. — Automatique et Systèmes Intelligents, SIAA track (E3A-SIAA)</span>
+          <span class="tl-dates">2026 – 2028</span>
+        </div>
+        <p class="tl-inst">Université d'Évry-Paris-Saclay / CFA EVE — apprenticeship</p>
+        <p class="tl-detail">Advanced control, robotics, and modelling of physical systems for automotive and
+          aeronautical applications, completed as a work-study apprenticeship starting September 2026.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-degree">M.Sc. — Mechatronics, Robotics &amp; Bio-Engineering (MRBE) [exchange / coursework]</span>
+          <span class="tl-dates">[20XX]</span>
+        </div>
+        <p class="tl-inst">Technical University of Munich (TUM)</p>
+        <p class="tl-detail">[One or two lines on the coursework or thesis focus — e.g. robotics/mechatronics
+          modules, project work, lab rotation.]</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-degree">[Programme name] [exchange / coursework]</span>
+          <span class="tl-dates">[20XX]</span>
+        </div>
+        <p class="tl-inst">Université Paris-Saclay</p>
+        <p class="tl-detail">[One or two lines on coursework — control theory, applied mathematics, project
+          work, etc.]</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-degree">[Licence / Bachelor programme]</span>
+          <span class="tl-dates">[20XX – 20XX]</span>
+        </div>
+        <p class="tl-inst">Université de Strasbourg</p>
+        <p class="tl-detail">[One or two lines on the programme focus.]</p>
+        <span class="tl-honor">★ Ranked 1st in cohort</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. PROJECTS
+       ============================================================ -->
+  <section id="projects" aria-labelledby="projects-title">
+    <p class="eyebrow">04 — Projects</p>
+    <h2 class="section-title" id="projects-title">Selected projects</h2>
+    <div class="project-grid">
+
+      <article class="project-card">
+        <h3>UAV trajectory-following simulation — LF→HF MBSE</h3>
+        <p>Staged Model-Based Systems Engineering workflow (LF Model-in-the-Loop → LF Integration → HF
+          Model-in-the-Loop → HF Integration) for a fixed-wing UAV, built around the MATLAB UAV Toolbox
+          Waypoint Follower and a reduced-order guidance model, feeding toward a smoke-plume mapping
+          ecosystem.</p>
+        <div class="project-stack">
+          <span>MATLAB / Simulink</span><span>UAV Toolbox</span><span>MBSE</span><span>GNC</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <h3>Guidance law trade study — P vs. L1 nonlinear guidance</h3>
+        <p>Comparative evaluation of a first-principles proportional heading controller against L1
+          nonlinear guidance (Park, Deyst &amp; How, 2004) as candidate guidance laws, structured around a
+          corner / circle / sinusoidal / zig-zag test matrix with pass criteria tied to requirements.</p>
+        <div class="project-stack">
+          <span>Guidance &amp; Control</span><span>MATLAB</span><span>Test &amp; Verification</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <h3>Atmospheric model comparison for UAV modelling</h3>
+        <p>Technical comparison of the COESA 1976 and ISA atmospheric models, evaluating applicability
+          across altitude ranges for use in fixed-wing UAV performance and guidance simulations.</p>
+        <div class="project-stack">
+          <span>Aerospace Toolbox</span><span>atmoscoesa</span><span>Modelling</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <h3>[Project title]</h3>
+        <p>[Short description — problem, approach, outcome. Keep it to two to three sentences and lead
+          with the result.]</p>
+        <div class="project-stack">
+          <span>[Tool]</span><span>[Tool]</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. SECURE LOCAL DOCUMENT DEPOSIT VAULT
+       ============================================================ -->
+  <section id="vault" class="vault-section" aria-labelledby="vault-title">
+    <p class="eyebrow">05 — Admin only</p>
+    <h2 class="section-title" id="vault-title">Secure local document deposit vault</h2>
+
+    <div class="vault-notice" role="note">
+      <span class="flag">GDPR ART. 32</span>
+      <p>
+        <strong>Zero-server architecture.</strong> All deposited documents are stored locally inside your
+        browser's sandboxed storage layer (<code>indexedDB</code>), encrypted with AES-256-GCM via the
+        <code>WebCrypto API</code> using a key derived from your vault PIN. No file, filename, or PIN is ever
+        transmitted to GitHub Pages or any external server — this page makes no network requests once
+        loaded, and the vault works fully offline.
+      </p>
+    </div>
+
+    <div class="vault-panel" id="vault-panel">
+      <!-- JS renders one of: unsupported / locked (set or enter pin) / unlocked, into #vault-panel-body -->
+      <div id="vault-panel-body"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p>This page is a static, self-contained document: no cookies, no analytics, no third-party scripts,
+      and no server-side component. Competency search and the document vault run entirely in your
+      browser's execution thread, per GDPR Art. 5 data-minimisation and Art. 32 security principles.</p>
+    <p>Built with semantic HTML5, CSS3 and vanilla JavaScript — WCAG 2.1 AA / European Accessibility Act
+      target. <a href="#main-content">Back to top ↑</a></p>
+  </div>
+</footer>
+
+<!-- Delete-confirmation modal (vault) -->
+<div class="modal-backdrop hidden" id="confirm-backdrop">
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-desc" id="confirm-dialog">
+    <h3 id="confirm-title">Delete this document?</h3>
+    <p id="confirm-desc">This removes the encrypted file from this browser's local storage only. This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" type="button" id="confirm-cancel">Cancel</button>
+      <button class="btn btn-danger" type="button" id="confirm-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ================================================================
+   MODULE A — COMPETENCY DATA (hardcoded, local, no network calls)
+   ================================================================ */
+const COMPETENCIES = [
+  { id:"gnc",      name:"Guidance, Navigation & Control", category:"Control", doc:"UAV LF/HF MBSE — LF-MIL Report", docType:"Sim report", tags:["gnc","autopilot","waypoint follower"] },
+  { id:"mbse",     name:"Model-Based Systems Engineering", category:"Systems", doc:"MBSE Workflow Specification, Rev A", docType:"Spec", tags:["mbse","requirements","systems engineering"] },
+  { id:"matlab",   name:"MATLAB / Simulink", category:"Tools", doc:"UAV LF/HF MBSE — LF-MIL Report", docType:"Sim report", tags:["matlab","simulink","uav toolbox"] },
+  { id:"atmos",    name:"Atmospheric Modelling (COESA / ISA)", category:"Aerospace", doc:"Atmospheric Model Comparison Note", docType:"Technical note", tags:["coesa","isa","atmoscoesa","altitude"] },
+  { id:"guidance", name:"Guidance Law Design (L1 Nonlinear Guidance)", category:"Control", doc:"Guidance Law Trade Study", docType:"Trade study", tags:["l1 guidance","park deyst how","nonlinear"] },
+  { id:"embeddedc",name:"Embedded C", category:"Software", doc:"Strasbourg Lab Report", docType:"Lab report", tags:["embedded","c","microcontroller","firmware"] },
+  { id:"worldmod", name:"World Models", category:"Learning-based control", doc:"ETH Pre-Proposal", docType:"Pre-proposal", tags:["world models","learning-based control","model learning"] },
+  { id:"controls", name:"Advanced Control Theory (Automatique Avancée)", category:"Control", doc:"Paris-Saclay Coursework Portfolio", docType:"Coursework", tags:["control theory","automatique avancee","state space"] },
+  { id:"robotics", name:"Robotics Systems Integration", category:"Robotics", doc:"TUM MRBE Coursework Portfolio", docType:"Coursework", tags:["robotics","mechatronics","integration"] },
+  { id:"signals",  name:"Signal Processing", category:"Fundamentals", doc:"Strasbourg Rank-1 Semester Project", docType:"Project report", tags:["signal processing","filtering","dsp"] },
+  { id:"sysmod",   name:"Physical System Modelling & Conception", category:"Systems", doc:"E3A-SIAA Apprenticeship Brief", docType:"Programme brief", tags:["system modelling","conception","physical systems"] },
+  { id:"python",   name:"Python for Test & Data Analysis", category:"Tools", doc:"UAV Trajectory-Following Sim — Test Matrix", docType:"Test matrix", tags:["python","data analysis","test matrix"] },
+  { id:"humanoid", name:"Collaborative & Humanoid Robotics (interest)", category:"Robotics", doc:"Alternance Search — Sector Brief", docType:"Sector brief", tags:["humanoid robotics","collaborative robotics"] },
+];
+
+/* ================================================================
+   MODULE B — LOCAL FUZZY SEARCH (pure client-side, no I/O)
+   Privacy: this function never reads from or writes to network,
+   storage, or logs. Input lives only in a local JS variable for
+   the duration of each keystroke's render.
+   ================================================================ */
+function fuzzyScore(query, text){
+  if(!query) return 0;
+  const q = query.toLowerCase();
+  const t = (text || "").toLowerCase();
+  const idx = t.indexOf(q);
+  if(idx !== -1) return 1000 - idx; // substring match, earlier = better
+  // loose subsequence match as a fallback (e.g. "gdc" -> "Guidance")
+  let qi = 0;
+  for(let i = 0; i < t.length && qi < q.length; i++){
+    if(t[i] === q[qi]) qi++;
+  }
+  return qi === q.length ? 5 : -1;
+}
+
+function bestMatch(query, item){
+  const fields = [
+    ["name", item.name],
+    ["doc", item.doc],
+    ["category", item.category],
+    ["tags", item.tags.join(" ")]
+  ];
+  let best = { score:-1, field:null };
+  for(const [field, text] of fields){
+    const s = fuzzyScore(query, text);
+    if(s > best.score) best = { score:s, field };
+  }
+  return best;
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+}
+
+function highlight(text, query){
+  const safe = escapeHtml(text);
+  if(!query) return safe;
+  const idx = text.toLowerCase().indexOf(query.toLowerCase());
+  if(idx === -1) return safe;
+  const before = escapeHtml(text.slice(0, idx));
+  const match = escapeHtml(text.slice(idx, idx + query.length));
+  const after = escapeHtml(text.slice(idx + query.length));
+  return `${before}<mark>${match}</mark>${after}`;
+}
+
+function renderMatrix(query){
+  const container = document.getElementById("matrix");
+  const q = (query || "").trim();
+  let results = COMPETENCIES.map(item => ({ item, match: bestMatch(q, item) }));
+  if(q){
+    results = results.filter(r => r.match.score > -1).sort((a,b) => b.match.score - a.match.score);
+  }
+
+  document.getElementById("total-count").textContent = COMPETENCIES.length;
+  document.getElementById("match-count").textContent = results.length;
+
+  if(results.length === 0){
+    container.innerHTML = "";
+    container.appendChild(document.getElementById("matrix-empty-template").content.cloneNode(true));
+    return;
+  }
+
+  container.innerHTML = results.map(({item, match}) => {
+    const nameHtml = match.field === "name" ? highlight(item.name, q) : escapeHtml(item.name);
+    const docHtml  = match.field === "doc"  ? highlight(item.doc, q)  : escapeHtml(item.doc);
+    return `
+      <div class="matrix-row">
+        <div>
+          <div class="m-name">${nameHtml}</div>
+          <div class="m-cat">${escapeHtml(item.category)}</div>
+        </div>
+        <div>
+          <span class="m-doc-label">Source document</span>
+          <span class="m-doc">${docHtml}</span>
+        </div>
+        <span class="m-doctype">${escapeHtml(item.docType)}</span>
+      </div>`;
+  }).join("");
+}
+
+function initSearch(){
+  const input = document.getElementById("competency-search");
+  const clearBtn = document.getElementById("clear-search");
+  renderMatrix("");
+  input.addEventListener("input", () => {
+    renderMatrix(input.value);
+    clearBtn.hidden = input.value.length === 0;
+  });
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    input.focus();
+    clearBtn.hidden = true;
+    renderMatrix("");
+  });
+}
+
+/* ================================================================
+   MODULE C — SECURE LOCAL DOCUMENT VAULT
+   Storage: indexedDB (per-origin, per-browser-profile, never
+   leaves the device). Confidentiality: AES-256-GCM via WebCrypto,
+   key derived from the vault PIN with PBKDF2 (never the PIN
+   itself is stored). Compression: CompressionStream where the
+   browser supports it, with graceful fallback otherwise.
+   ================================================================ */
+const Vault = (() => {
+  const DB_NAME = "portfolio-vault";
+  const DB_VERSION = 1;
+  const STORE_DOCS = "documents";
+  const STORE_META = "meta";
+  const PBKDF2_ITERATIONS = 150000;
+  const CANARY_PLAINTEXT = "vault-ok-v1";
+
+  let db = null;
+  let sessionKey = null; // CryptoKey, held only in memory, cleared on lock
+  let pendingDeleteId = null;
+
+  const supported = () => "indexedDB" in window && window.crypto && window.crypto.subtle;
+
+  function openDb(){
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = () => {
+        const idb = req.result;
+        if(!idb.objectStoreNames.contains(STORE_DOCS)){
+          idb.createObjectStore(STORE_DOCS, { keyPath:"id", autoIncrement:true });
+        }
+        if(!idb.objectStoreNames.contains(STORE_META)){
+          idb.createObjectStore(STORE_META, { keyPath:"key" });
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error || new Error("Could not open local storage."));
+    });
+  }
+
+  function tx(storeName, mode){
+    return db.transaction(storeName, mode).objectStore(storeName);
+  }
+  function reqToPromise(req){
+    return new Promise((resolve, reject) => {
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error || new Error("Local storage operation failed."));
+    });
+  }
+
+  function bufToB64(buf){
+    return btoa(String.fromCharCode(...new Uint8Array(buf)));
+  }
+  function b64ToBuf(b64){
+    const bin = atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+    return arr.buffer;
+  }
+
+  async function deriveKey(pin, saltBuf){
+    const enc = new TextEncoder();
+    const baseKey = await crypto.subtle.importKey("raw", enc.encode(pin), "PBKDF2", false, ["deriveKey"]);
+    return crypto.subtle.deriveKey(
+      { name:"PBKDF2", salt:saltBuf, iterations:PBKDF2_ITERATIONS, hash:"SHA-256" },
+      baseKey,
+      { name:"AES-GCM", length:256 },
+      false,
+      ["encrypt","decrypt"]
+    );
+  }
+
+  async function encryptBuffer(key, buf){
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ciphertext = await crypto.subtle.encrypt({ name:"AES-GCM", iv }, key, buf);
+    return { iv, ciphertext };
+  }
+  async function decryptBuffer(key, ivBuf, ciphertextBuf){
+    return crypto.subtle.decrypt({ name:"AES-GCM", iv: new Uint8Array(ivBuf) }, key, ciphertextBuf);
+  }
+
+  async function compress(buf){
+    if(typeof CompressionStream === "undefined") return { data: buf, compressed:false };
+    const stream = new Blob([buf]).stream().pipeThrough(new CompressionStream("gzip"));
+    const data = await new Response(stream).arrayBuffer();
+    return { data, compressed:true };
+  }
+  async function decompress(buf, wasCompressed){
+    if(!wasCompressed || typeof DecompressionStream === "undefined") return buf;
+    const stream = new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"));
+    return new Response(stream).arrayBuffer();
+  }
+
+  async function getCanary(){
+    return reqToPromise(tx(STORE_META, "readonly").get("canary"));
+  }
+  async function setCanary(record){
+    return reqToPromise(tx(STORE_META, "readwrite").put(record));
+  }
+
+  async function setupPin(pin){
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const key = await deriveKey(pin, salt);
+    const { iv, ciphertext } = await encryptBuffer(key, new TextEncoder().encode(CANARY_PLAINTEXT));
+    await setCanary({ key:"canary", salt:bufToB64(salt), iv:bufToB64(iv), ciphertext:bufToB64(ciphertext) });
+    sessionKey = key;
+  }
+
+  async function unlockWithPin(pin){
+    const canary = await getCanary();
+    if(!canary) throw new Error("NO_PIN_SET");
+    const salt = b64ToBuf(canary.salt);
+    const key = await deriveKey(pin, salt);
+    try{
+      const plain = await decryptBuffer(key, b64ToBuf(canary.iv), b64ToBuf(canary.ciphertext));
+      const text = new TextDecoder().decode(plain);
+      if(text !== CANARY_PLAINTEXT) throw new Error("mismatch");
+    } catch(e){
+      throw new Error("WRONG_PIN");
+    }
+    sessionKey = key;
+  }
+
+  function lock(){
+    sessionKey = null;
+  }
+
+  async function listDocs(){
+    const all = await reqToPromise(tx(STORE_DOCS, "readonly").getAll());
+    return all.sort((a,b) => b.createdAt - a.createdAt);
+  }
+
+  async function addFile(file){
+    if(!sessionKey) throw new Error("LOCKED");
+    const rawBuf = await file.arrayBuffer();
+    const { data, compressed } = await compress(rawBuf);
+    const { iv, ciphertext } = await encryptBuffer(sessionKey, data);
+    const record = {
+      name: file.name,
+      type: file.type || "application/octet-stream",
+      size: file.size,
+      compressed,
+      iv: bufToB64(iv),
+      ciphertext, // stored as ArrayBuffer directly — indexedDB supports structured clone of ArrayBuffer
+      createdAt: Date.now()
+    };
+    await reqToPromise(tx(STORE_DOCS, "readwrite").add(record));
+  }
+
+  async function getFileBlob(id){
+    if(!sessionKey) throw new Error("LOCKED");
+    const record = await reqToPromise(tx(STORE_DOCS, "readonly").get(id));
+    if(!record) throw new Error("NOT_FOUND");
+    const plainCompressed = await decryptBuffer(sessionKey, b64ToBuf(record.iv), record.ciphertext);
+    const plain = await decompress(plainCompressed, record.compressed);
+    return { blob: new Blob([plain], { type: record.type }), name: record.name };
+  }
+
+  async function deleteFile(id){
+    return reqToPromise(tx(STORE_DOCS, "readwrite").delete(id));
+  }
+
+  async function init(){
+    db = await openDb();
+  }
+
+  return {
+    supported, init, setupPin, unlockWithPin, lock,
+    isUnlocked: () => !!sessionKey,
+    hasPin: async () => !!(await getCanary()),
+    listDocs, addFile, getFileBlob, deleteFile
+  };
+})();
+
+/* ---------- Vault UI ---------- */
+function formatBytes(n){
+  if(n < 1024) return n + " B";
+  if(n < 1024*1024) return (n/1024).toFixed(1) + " KB";
+  return (n/1024/1024).toFixed(2) + " MB";
+}
+function formatDate(ts){
+  return new Date(ts).toLocaleString(undefined, { year:"numeric", month:"short", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+}
+
+const vaultBody = () => document.getElementById("vault-panel-body");
+
+function renderUnsupported(){
+  vaultBody().innerHTML = `
+    <div class="unsupported-box" role="alert">
+      <strong>The document vault isn't available in this browser.</strong>
+      <p style="margin-top:8px;">It needs <code>indexedDB</code> and the <code>WebCrypto</code> API, which
+      this browser doesn't expose (or has disabled, e.g. in a private-browsing mode). The rest of this
+      page — CV and competency search — still works normally. Try a recent version of Chrome, Firefox,
+      Edge, or Safari, outside private/incognito mode.</p>
+    </div>`;
+}
+
+async function renderSetupPin(){
+  vaultBody().innerHTML = `
+    <div class="vault-locked">
+      <div class="lockglyph" aria-hidden="true">◈ ◈ ◈</div>
+      <h3>Set a vault PIN</h3>
+      <p>This is the first time the vault is used in this browser. Choose a PIN — it never leaves this
+        device and is used to derive the encryption key for anything you deposit. There's no password
+        recovery: if it's lost, previously deposited files can't be decrypted.</p>
+      <form class="pin-form" id="setup-form" novalidate>
+        <div class="field">
+          <label for="pin-new">New PIN (min. 6 characters)</label>
+          <input type="password" id="pin-new" name="pin-new" autocomplete="new-password" inputmode="numeric" minlength="6" required>
+        </div>
+        <div class="field">
+          <label for="pin-confirm">Confirm PIN</label>
+          <input type="password" id="pin-confirm" name="pin-confirm" autocomplete="new-password" inputmode="numeric" minlength="6" required>
+        </div>
+        <p class="field-error" role="alert" id="setup-error"></p>
+        <button class="btn btn-amber" type="submit">Set PIN &amp; open vault</button>
+      </form>
+    </div>`;
+
+  document.getElementById("setup-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const pin = document.getElementById("pin-new").value;
+    const confirm = document.getElementById("pin-confirm").value;
+    const errorEl = document.getElementById("setup-error");
+    errorEl.textContent = "";
+    if(pin.length < 6){ errorEl.textContent = "PIN must be at least 6 characters."; return; }
+    if(pin !== confirm){ errorEl.textContent = "PIN and confirmation don't match."; return; }
+    try{
+      await Vault.setupPin(pin);
+      await renderUnlocked();
+    } catch(err){
+      errorEl.textContent = "Couldn't set the PIN — " + (err && err.message ? err.message : "unknown error") + ". Try again.";
+    }
+  });
+}
+
+async function renderEnterPin(){
+  vaultBody().innerHTML = `
+    <div class="vault-locked">
+      <div class="lockglyph" aria-hidden="true">◈ ◈ ◈</div>
+      <h3>Vault locked</h3>
+      <p>Enter your vault PIN to view or deposit documents. Everything below is decrypted locally in
+        this browser tab only.</p>
+      <form class="pin-form" id="unlock-form" novalidate>
+        <div class="field">
+          <label for="pin-enter">Vault PIN</label>
+          <input type="password" id="pin-enter" name="pin-enter" autocomplete="current-password" inputmode="numeric" required>
+        </div>
+        <p class="field-error" role="alert" id="unlock-error"></p>
+        <button class="btn btn-amber" type="submit">Unlock vault</button>
+      </form>
+    </div>`;
+
+  const form = document.getElementById("unlock-form");
+  const pinInput = document.getElementById("pin-enter");
+  pinInput.focus();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById("unlock-error");
+    errorEl.textContent = "";
+    try{
+      await Vault.unlockWithPin(pinInput.value);
+      await renderUnlocked();
+    } catch(err){
+      errorEl.textContent = err && err.message === "WRONG_PIN"
+        ? "That PIN doesn't match. Try again."
+        : "Couldn't unlock the vault. Try again.";
+      pinInput.value = "";
+      pinInput.focus();
+    }
+  });
+}
+
+async function renderUnlocked(){
+  vaultBody().innerHTML = `
+    <div class="vault-unlocked-head">
+      <span class="vault-status"><span class="dot" aria-hidden="true"></span> Vault unlocked — decrypted locally in this tab</span>
+      <button class="btn btn-ghost" type="button" id="lock-btn">Lock vault</button>
+    </div>
+
+    <div class="dropzone" id="dropzone">
+      <p><strong>Drag and drop PDF documents here</strong>, or use the button below.</p>
+      <button class="btn btn-primary" type="button" id="pick-files-btn">Select files…</button>
+      <input class="visually-hidden" type="file" id="file-input" accept="application/pdf" multiple aria-label="Choose PDF documents to deposit">
+      <p class="dz-sub">Files are compressed, then encrypted (AES-256-GCM) before being written to this browser's local storage.</p>
+    </div>
+    <p class="vault-status-line" id="vault-op-status" role="status" aria-live="polite"></p>
+
+    <div class="doc-list" id="doc-list" aria-label="Deposited documents"></div>
+  `;
+
+  document.getElementById("lock-btn").addEventListener("click", () => {
+    Vault.lock();
+    renderEnterPin();
+  });
+
+  const dropzone = document.getElementById("dropzone");
+  const fileInput = document.getElementById("file-input");
+  const pickBtn = document.getElementById("pick-files-btn");
+
+  pickBtn.addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", () => handleFiles(fileInput.files));
+
+  ["dragenter","dragover"].forEach(evt => dropzone.addEventListener(evt, (e) => {
+    e.preventDefault(); e.stopPropagation();
+    dropzone.classList.add("is-dragover");
+  }));
+  ["dragleave","drop"].forEach(evt => dropzone.addEventListener(evt, (e) => {
+    e.preventDefault(); e.stopPropagation();
+    dropzone.classList.remove("is-dragover");
+  }));
+  dropzone.addEventListener("drop", (e) => {
+    if(e.dataTransfer && e.dataTransfer.files) handleFiles(e.dataTransfer.files);
+  });
+
+  await refreshDocList();
+}
+
+function setVaultOpStatus(message, tone){
+  const el = document.getElementById("vault-op-status");
+  if(!el) return;
+  el.textContent = message;
+  if(tone) el.setAttribute("data-tone", tone); else el.removeAttribute("data-tone");
+}
+
+async function handleFiles(fileList){
+  const files = Array.from(fileList || []);
+  if(files.length === 0) return;
+  let okCount = 0;
+  for(const file of files){
+    if(file.type && file.type !== "application/pdf"){
+      setVaultOpStatus(`Skipped "${file.name}" — only PDF documents are accepted here.`, "error");
+      continue;
+    }
+    try{
+      setVaultOpStatus(`Encrypting "${file.name}"…`);
+      await Vault.addFile(file);
+      okCount++;
+    } catch(err){
+      setVaultOpStatus(`Couldn't deposit "${file.name}" — ${err && err.message ? err.message : "storage error"}. Nothing was saved for this file.`, "error");
+    }
+  }
+  if(okCount > 0){
+    setVaultOpStatus(`Deposited ${okCount} file${okCount === 1 ? "" : "s"} — encrypted and stored locally.`, "ok");
+  }
+  await refreshDocList();
+}
+
+async function refreshDocList(){
+  const listEl = document.getElementById("doc-list");
+  if(!listEl) return;
+  let docs = [];
+  try{
+    docs = await Vault.listDocs();
+  } catch(err){
+    listEl.innerHTML = `<p class="doc-empty">Couldn't read the local document list.</p>`;
+    return;
+  }
+  if(docs.length === 0){
+    listEl.innerHTML = `<p class="doc-empty">No documents deposited yet.</p>`;
+    return;
+  }
+  listEl.innerHTML = docs.map(d => `
+    <div class="doc-row" data-id="${d.id}">
+      <div>
+        <div class="doc-name">${escapeHtml(d.name)}</div>
+        <div class="doc-meta">${formatBytes(d.size)} · deposited ${formatDate(d.createdAt)} · ${d.compressed ? "compressed" : "uncompressed"} · AES-256-GCM</div>
+      </div>
+      <button class="doc-btn" type="button" data-action="download" data-id="${d.id}">Download</button>
+      <button class="doc-btn danger" type="button" data-action="delete" data-id="${d.id}">Delete</button>
+      <span></span>
+    </div>`).join("");
+
+  listEl.querySelectorAll("[data-action='download']").forEach(btn => {
+    btn.addEventListener("click", () => downloadDoc(Number(btn.dataset.id)));
+  });
+  listEl.querySelectorAll("[data-action='delete']").forEach(btn => {
+    btn.addEventListener("click", () => openDeleteConfirm(Number(btn.dataset.id)));
+  });
+}
+
+async function downloadDoc(id){
+  try{
+    setVaultOpStatus("Decrypting…");
+    const { blob, name } = await Vault.getFileBlob(id);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    setVaultOpStatus(`Decrypted "${name}" for download.`, "ok");
+  } catch(err){
+    setVaultOpStatus("Couldn't decrypt that file in this session. Try locking and re-unlocking the vault.", "error");
+  }
+}
+
+/* ---------- delete confirmation modal (focus-trapped) ---------- */
+let lastFocusedBeforeModal = null;
+function openDeleteConfirm(id){
+  pendingDeleteIdSet(id);
+  lastFocusedBeforeModal = document.activeElement;
+  const backdrop = document.getElementById("confirm-backdrop");
+  backdrop.classList.remove("hidden");
+  document.getElementById("confirm-delete").focus();
+  document.addEventListener("keydown", onModalKeydown);
+}
+function closeDeleteConfirm(){
+  const backdrop = document.getElementById("confirm-backdrop");
+  backdrop.classList.add("hidden");
+  document.removeEventListener("keydown", onModalKeydown);
+  if(lastFocusedBeforeModal) lastFocusedBeforeModal.focus();
+}
+function pendingDeleteIdSet(id){ window.__pendingDeleteId = id; }
+function onModalKeydown(e){
+  if(e.key === "Escape"){ closeDeleteConfirm(); return; }
+  if(e.key === "Tab"){
+    const dialog = document.getElementById("confirm-dialog");
+    const focusables = dialog.querySelectorAll("button");
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
+}
+
+function initVaultModal(){
+  document.getElementById("confirm-cancel").addEventListener("click", closeDeleteConfirm);
+  document.getElementById("confirm-delete").addEventListener("click", async () => {
+    const id = window.__pendingDeleteId;
+    closeDeleteConfirm();
+    try{
+      await Vault.deleteFile(id);
+      setVaultOpStatus("Document deleted from local storage.", "ok");
+    } catch(err){
+      setVaultOpStatus("Couldn't delete that document. Try again.", "error");
+    }
+    await refreshDocList();
+  });
+}
+
+async function initVault(){
+  initVaultModal();
+  if(!Vault.supported()){
+    renderUnsupported();
+    return;
+  }
+  try{
+    await Vault.init();
+  } catch(err){
+    vaultBody().innerHTML = `<div class="unsupported-box" role="alert">Couldn't open local storage for the vault (${escapeHtml(err && err.message ? err.message : "unknown error")}). If you're in private/incognito mode, try a normal browser window.</div>`;
+    return;
+  }
+  const hasPin = await Vault.hasPin();
+  if(hasPin){
+    await renderEnterPin();
+  } else {
+    await renderSetupPin();
+  }
+}
+
+/* ================================================================
+   BOOTSTRAP
+   ================================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  initSearch();
+  initVault();
+});
+</script>
+</body>
+</html>
