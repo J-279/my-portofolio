@@ -6,10 +6,28 @@
 <title>[Your Name] — Systems &amp; Control Engineer · CV</title>
 <meta name="description" content="Engineering CV and local competency reference matrix for [Your Name] — aerospace, robotics and control systems.">
 <meta name="color-scheme" content="dark">
-<!-- No cookies, no trackers, no third-party analytics are loaded by this page. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Defense-in-depth (Art. 32): GitHub Pages can't set real HTTP response
+     headers, so the two directives that *are* honoured from a <meta> tag
+     are set here. Note: frame-ancestors, sandbox and report-uri are NOT
+     enforceable via <meta> per spec — only via an HTTP header — so this is
+     a partial mitigation, not click-jacking protection; a static personal
+     CV is low-risk for that specific vector, but it's worth knowing the
+     limitation rather than assuming the tag covers it. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<!--
+  COMPLIANCE NOTES (see WEB_my_portofolio_REQ.txt)
+  - This document makes NO network requests of its own: no cookies, no
+    analytics, no third-party fonts/scripts/beacons (REQ-02). It is fully
+    self-contained and works offline once loaded.
+  - REQ-01 (HTTPS / Art. 32 transport security) is enforced at the hosting
+    layer, not in this file: on GitHub Pages, enable Settings -> Pages ->
+    "Enforce HTTPS" (on by default for *.github.io; for a custom domain,
+    enable it once the TLS certificate has provisioned).
+  - Local search (REQ-03), the competency matrix ranking (REQ-04), keyboard
+    operability (REQ-06), labelling (REQ-07), and the vault (REQ-08/REQ-09)
+    are implemented in the CSS/JS below; see inline comments at each module.
+-->
 <style>
 /* ============================================================
    0. DESIGN TOKENS
@@ -28,7 +46,7 @@
   --paper:#E9EEF3;
   --paper-dim:#C6D2DD;
   --muted:#8CA0B3;
-  --muted-2:#5E7286;
+  --muted-2:#869CAB; /* re-tuned from #5E7286 — that failed WCAG 1.4.3 (3.68:1) at small text sizes; this hits 4.5:1+ */
   --amber:#FFB13C;
   --amber-dim:#5C4116;
   --amber-ink:#241a06;
@@ -36,9 +54,12 @@
   --ok:#7EE2B8;
   --radius-sm:3px;
   --radius-md:5px;
-  --font-display:'Space Grotesk', 'Segoe UI', sans-serif;
-  --font-body:'IBM Plex Sans', 'Segoe UI', sans-serif;
-  --font-mono:'IBM Plex Mono', 'Consolas', monospace;
+  /* System font stacks only — no external font requests (REQ-01/REQ-02:
+     self-contained, zero third-party network calls, no visitor IP sent
+     to a font CDN before consent). */
+  --font-display:-apple-system, 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
+  --font-body:-apple-system, 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
+  --font-mono:ui-monospace, 'Cascadia Code', 'Consolas', 'SFMono-Regular', 'Liberation Mono', monospace;
   --maxw:1040px;
   --focus-ring: 3px solid var(--cyan);
 }

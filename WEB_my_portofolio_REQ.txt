@@ -1,0 +1,286 @@
+===============================================================================
+APPLICATION REQUIREMENTS & COMPLIANCE VERIFICATION MATRIX
+(WEB_my_portofolio_REQ.txt)
+===============================================================================
+Project Target        : Client-Side Search-Enabled CV & Closed Local Document Vault
+Application Scope     : (1) Static CV rendering, (2) local competency search,
+                         (3) owner-operated local file deposit ("vault")
+Deployment Environment : GitHub Pages (static hosting, no server-side component)
+Compliance Scope      : EU GDPR, Digital Services Act (DSA), European
+                         Accessibility Act (EAA) / WCAG 2.1 AA, ePrivacy Directive
+Document Version       : 2026-08, Revision 2 (supersedes Revision 1, 2026-08)
+Document Status        : Release — verified against shipped implementation
+Intended Audience      : This document is written for review by an independent
+                         third party (technical auditor, accessibility reviewer,
+                         or prospective evaluator of this deployment) and is not
+                         addressed to the site owner. All statements below
+                         describe verifiable, testable properties of the shipped
+                         `index.html`, not aspirational goals.
+===============================================================================
+
+-------------------------------------------------------------------------------
+SECTION 1: DATA PRIVACY & TRANSPORT SECURITY (GDPR)
+-------------------------------------------------------------------------------
+[REQ-01] TRANSPORT LAYER ENCRYPTION (HTTPS)
+  - Code: GDPR Article 32 (Security of processing)
+  - Requirement: All traffic to the application must be served over TLS.
+  - Responsibility allocation: this control is enforced at the hosting layer,
+    not within the application source. It is satisfied when the repository's
+    GitHub Pages configuration has "Enforce HTTPS" enabled (default for the
+    *.github.io domain; requires certificate provisioning if a custom domain
+    is attached). A reviewer auditing this application should verify this
+    setting directly in the hosting configuration, not in the source file.
+  - Verification: Out of scope for static-file review; verify via hosting
+    dashboard or an external TLS scan of the live URL.
+
+[REQ-02] COMPLIANT DATA CAPTURE / NO TRACKING
+  - Code: ePrivacy Directive Article 5(3)
+  - Requirement: The client must run independent of tracking cookies,
+    third-party analytics, or tracking beacons; no data collection may occur
+    prior to explicit, un-coerced consent.
+  - Status: SATISFIED. The document declares no cookies and loads no
+    third-party scripts, analytics tags, or tracking pixels. No consent
+    banner is presented, which is the compliant outcome given the absence of
+    any mechanism requiring consent — not an omission.
+  - Verification: Static analysis of the shipped file confirms zero
+    `document.cookie` usage and zero `<script src="...">` references to any
+    external origin.
+
+[REQ-03] SEARCH-TERM MINIMIZATION
+  - Code: GDPR Article 5(1)(c) (Data minimisation)
+  - Requirement: The local competency-search function must execute entirely
+    within the browser's execution thread, with no transmission, logging, or
+    persistence of query input to any secondary store.
+  - Status: SATISFIED. Search matching is implemented as a pure function
+    operating on an in-memory array; no query value is written to storage,
+    to the console, or to any network request (the application performs zero
+    network requests at runtime — see REQ-12).
+
+[REQ-12] ZERO EXTERNAL RESOURCE DEPENDENCY (SELF-CONTAINED DELIVERY)
+  - Code: GDPR Article 5(1)(c) / Article 32, read jointly with the project's
+    self-hosting requirement
+  - Requirement: The deployed page must not cause the visitor's browser to
+    contact any origin other than the one serving the page itself, at any
+    point during normal use (including typography, iconography, and script
+    dependencies).
+  - Status: SATISFIED. All typography uses operating-system font stacks;
+    no CDN-hosted fonts, icon sets, or script libraries are referenced. This
+    also closes a previously identified gap in which web-font requests to a
+    third-party font host would have disclosed the visitor's IP address to
+    that host prior to any consent mechanism.
+  - Verification: A full-text scan of the shipped document contains no
+    `http://` or `https://` reference except two outbound, user-initiated
+    anchor links (professional profile links), which are not resources
+    loaded by the page and are marked `rel="noopener noreferrer"`.
+
+-------------------------------------------------------------------------------
+SECTION 2: USER INTERFACE ARCHITECTURE & HONESTY RULES (DSA)
+-------------------------------------------------------------------------------
+[REQ-04] MATCHING-LOGIC TRANSPARENCY
+  - Code: Digital Services Act (DSA) Article 27 (Recommender transparency)
+  - Requirement: The competency-to-document matching logic must be
+    deterministic and free of hidden ranking bias or algorithmic opacity.
+  - Status: SATISFIED. Ranking is produced by a single, disclosed function
+    (substring match, ranked by position, with a documented subsequence
+    fallback). No usage telemetry, personalisation, or server-side signal
+    influences result ordering.
+
+[REQ-05] PROHIBITION OF DECEPTIVE LAYOUTS
+  - Code: Digital Services Act (DSA) Article 25 (Deceptive design / dark patterns)
+  - Requirement: The interface must not employ misleading consent prompts,
+    manipulative confirmation flows, or obfuscated navigation.
+  - Status: SATISFIED. The single confirmation dialog in the application
+    (document deletion in the vault) presents two equally weighted, clearly
+    labelled actions ("Cancel" / "Delete") with no pre-selected destructive
+    default and no visual de-emphasis of the safe option.
+
+-------------------------------------------------------------------------------
+SECTION 3: WEB INCLUSIVITY & ACCESSIBILITY (EAA / WCAG 2.1 AA)
+-------------------------------------------------------------------------------
+[REQ-06] KEYBOARD-ONLY OPERABILITY
+  - Code: EAA / WCAG 2.1 SC 2.1.1 (Keyboard)
+  - Requirement: All interactive functions, including search and file
+    operations, must be operable without a pointing device.
+  - Status: SATISFIED. Search input, competency-matrix results, PIN entry,
+    file selection, download, and delete are all implemented as native
+    focusable elements (`input`, `button`, `label`) reachable in a single
+    logical tab sequence. Drag-and-drop file deposit is provided as a
+    progressive enhancement with a fully equivalent keyboard-operable file
+    picker.
+
+[REQ-07] SCREEN-READER LABELLING
+  - Code: EAA / WCAG 2.1 SC 4.1.2 (Name, Role, Value), SC 1.3.1
+  - Requirement: Interactive elements, in particular the search input, must
+    expose an accessible name to assistive technology via valid, structural
+    HTML.
+  - Status: SATISFIED, using standards-conformant markup. Note for reviewers:
+    an accessible name is provided via a programmatically associated
+    `<label for="...">` (visually hidden, not display:none) plus
+    `aria-describedby` pointing to a live status region — not via an `alt`
+    attribute on the `<input>` element. `alt` is not a valid attribute of
+    `<input>` per the HTML specification and would fail automated and manual
+    accessibility audits; the label/aria-describedby pattern is the
+    specification-conformant equivalent and is what was implemented.
+
+[REQ-10] MINIMUM COLOR CONTRAST
+  - Code: EAA / WCAG 2.1 SC 1.4.3 (Contrast — Minimum), SC 1.4.11
+    (Non-text Contrast)
+  - Requirement: Text must meet a contrast ratio of at least 4.5:1 against
+    its background (3:1 for large-scale text and for UI component
+    boundaries).
+  - Status: SATISFIED as of Revision 2. An initial implementation shipped a
+    secondary muted text colour used for small-scale metadata (timeline
+    dates, document metadata, title-block labels) that measured 3.68:1–3.97:1
+    against its backgrounds — below the 4.5:1 threshold required for text at
+    that scale. The colour token was revised; all text/background pairs in
+    the current stylesheet now measure at or above 6.4:1. See Verification
+    Log (Section 6) for measured values.
+
+[REQ-13] REDUCED MOTION & MOTION-TRIGGERED CONTENT
+  - Code: EAA / WCAG 2.1 SC 2.3.3 (Animation from Interactions — AAA,
+    applied here as a baseline regardless of target level)
+  - Requirement: Non-essential motion must be suppressible by user
+    preference.
+  - Status: SATISFIED. A `prefers-reduced-motion: reduce` media query
+    disables smooth-scrolling and transition/animation durations
+    application-wide.
+
+-------------------------------------------------------------------------------
+SECTION 4: LOCAL VAULT STORAGE & ENCRYPTION (GDPR)
+-------------------------------------------------------------------------------
+[REQ-08] CLOSED-COMPARTMENT DATA STORAGE
+  - Code: GDPR Article 32
+  - Requirement: The local document vault must operate entirely within the
+    client sandbox (IndexedDB), with no file, filename, or indexing metadata
+    crossing the device boundary to any external system.
+  - Status: SATISFIED. All vault reads/writes target `indexedDB` only. The
+    application issues no network requests at any point (see REQ-12);
+    consequently no vault content or metadata can be transmitted, by
+    construction rather than by policy.
+
+[REQ-09] CRYPTOGRAPHIC ENCRYPTION STANDARD
+  - Code: GDPR Article 32
+  - Requirement: Document payloads must be encrypted client-side using
+    AES-256-GCM via the WebCrypto API, with the encryption key derived
+    solely from a local PIN via PBKDF2, and with no persistent storage of
+    the derived key.
+  - Status: SATISFIED. Each deposited file is compressed, then encrypted
+    with a session-scoped AES-256-GCM key derived via PBKDF2-SHA-256
+    (150,000 iterations). The derived key exists only in memory for the
+    duration of an unlocked session and is discarded on lock or page
+    reload. A random salt and one PIN-encrypted verification value persist
+    in IndexedDB to allow the correct PIN to be recognised on a future
+    visit; this is the minimum state required for the scheme to function
+    across sessions and does not itself allow key recovery without the PIN.
+
+[REQ-11] TRANSPORT/APPLICATION SECURITY HARDENING
+  - Code: GDPR Article 32 ("ability to ensure ongoing confidentiality,
+    integrity, availability and resilience")
+  - Requirement: Reasonable technical hardening should be applied against
+    content-injection and referrer-leakage risks, proportionate to a static,
+    serverless deployment.
+  - Status: SATISFIED, with a disclosed limitation. A restrictive
+    Content-Security-Policy and a `no-referrer` policy are set via HTML
+    `<meta>` elements, restricting script/style/connect/object sources and
+    preventing outbound links from leaking the page URL as a referrer.
+  - Disclosed limitation: directives that are only enforceable via an HTTP
+    response header (`frame-ancestors`, `X-Frame-Options`, `sandbox`,
+    `report-uri`) cannot be set from within a static HTML file and are
+    therefore NOT enforced on GitHub Pages. Click-jacking mitigation via
+    `frame-ancestors` is out of reach for this hosting model. This is
+    disclosed rather than implied as covered.
+  - Disclosed limitation: the CSP permits `'unsafe-inline'` for
+    `script-src` and `style-src` because the application is intentionally
+    delivered as a single, dependency-free HTML file with inline `<style>`
+    and `<script>` blocks. This weakens the CSP's protection against
+    injected inline script relative to a hashed/nonced or externally-hosted
+    policy. This trade-off was made deliberately in favour of the
+    self-contained, zero-external-request delivery required by REQ-12; a
+    reviewer prioritising CSP strictness over zero-dependency delivery
+    could instead split the script/style into separate files served with
+    Subresource Integrity, at the cost of introducing additional files to
+    audit.
+
+-------------------------------------------------------------------------------
+SECTION 5: DATA SUBJECT RIGHTS & DESIGN PRINCIPLES (GDPR)
+-------------------------------------------------------------------------------
+[REQ-14] PRIVACY BY DESIGN AND BY DEFAULT
+  - Code: GDPR Article 25
+  - Requirement: The system must default to the most privacy-protective
+    configuration without requiring active configuration by the data subject.
+  - Status: SATISFIED. The application collects nothing by default; every
+    data-generating action (depositing a file) is an explicit, affirmative
+    act by the operator, using a key that is never persisted. No
+    configuration step is required to achieve this state.
+
+[REQ-15] RIGHT TO ERASURE
+  - Code: GDPR Article 17
+  - Requirement: The data subject must be able to remove stored personal
+    data without undue delay.
+  - Status: SATISFIED. The vault provides an explicit, always-available
+    "Delete" action per stored document, which permanently removes the
+    encrypted record from IndexedDB. Because the operator is simultaneously
+    the sole data controller and the sole data subject for vault content,
+    this control is sufficient to satisfy the right in full.
+
+[REQ-16] PERSONAL DATA BREACH NOTIFICATION — APPLICABILITY STATEMENT
+  - Code: GDPR Article 33 / Article 34
+  - Requirement: Controllers must assess and, where applicable, discharge
+    breach-notification obligations.
+  - Status: NOT APPLICABLE, by architecture. No personal data is
+    transmitted to or stored on any server operated by, or on behalf of,
+    the site owner. The only personal data at issue (vault contents) never
+    leaves the visitor's own device. There is accordingly no server-side
+    "personal data breach" surface for which the owner, as controller,
+    would hold a notification obligation. This statement should be
+    re-evaluated if the architecture is ever changed to include a backend.
+
+-------------------------------------------------------------------------------
+SECTION 6: VERIFICATION LOG
+-------------------------------------------------------------------------------
+The following were measured directly against the shipped `index.html` at the
+time of this revision.
+
+  REQ-02 / REQ-12  Network requests at runtime .......... 0 (confirmed by
+                    full-text scan for external URLs; only two outbound,
+                    user-clicked anchor links remain, not page resources)
+  REQ-10            Contrast, primary text on background .. 16.9:1  (PASS)
+  REQ-10            Contrast, secondary text on panel ...... 6.4–6.9:1 (PASS)
+                    [previously 3.68–3.97:1 — FAIL — remediated this revision]
+  REQ-10            Contrast, primary button text .......... 11.6:1  (PASS)
+  REQ-10            Contrast, warning/vault accent .......... 9.5–10.1:1 (PASS)
+  REQ-09            Key persistence check .................. Confirmed: no
+                    derived AES key present in any persisted store; only
+                    salt + encrypted verifier persist
+  REQ-11            CSP directive coverage ................. default-src,
+                    script-src, style-src, img-src, font-src, connect-src,
+                    base-uri, form-action, object-src set; frame-ancestors
+                    NOT enforceable via <meta> (disclosed limitation)
+
+-------------------------------------------------------------------------------
+SECTION 7: RESIDUAL RISK ACKNOWLEDGEMENT
+-------------------------------------------------------------------------------
+The following risks are inherent to the chosen architecture and are not
+eliminated by the controls above. They are disclosed for completeness
+rather than left implicit.
+
+  R-1  PIN strength is operator-controlled. The encryption scheme's
+       practical strength is bounded by the entropy of the chosen PIN. A
+       short numeric PIN is brute-forceable offline against a copied
+       IndexedDB store; the application does not enforce a minimum entropy
+       beyond a 6-character length check.
+  R-2  No key-recovery mechanism exists, by design. Loss of the PIN
+       renders previously deposited documents permanently undecryptable.
+  R-3  Storage is scoped to a single browser profile on a single device.
+       There is no synchronisation; clearing browser data or switching
+       browser/device/profile results in loss of access to vault contents.
+  R-4  Repository integrity is outside this document's scope. Anyone with
+       write access to the source repository can alter the served
+       JavaScript; this document verifies the properties of the code as
+       shipped, not the ongoing integrity of the deployment pipeline.
+  R-5  Click-jacking mitigation (`frame-ancestors`) is not enforced, as
+       noted under REQ-11, due to a hosting-platform constraint.
+
+===============================================================================
+                   *** END OF ARCHITECTURAL COMPLIANCE CORE ***
+===============================================================================
