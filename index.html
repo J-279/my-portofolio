@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>James Wijaya — Mechatronics &amp; Systems Engineering · CV</title>
-<meta name="description" content="Engineering CV and local competency reference matrix for [Your Name] — aerospace, robotics and control systems.">
+<meta name="description" content="Engineering CV and local competency reference matrix for James Wijaya — aerospace, robotics and control systems.">
 <meta name="color-scheme" content="dark">
 <!-- Defense-in-depth (Art. 32): GitHub Pages can't set real HTTP response
      headers, so the two directives that *are* honoured from a <meta> tag
@@ -338,7 +338,7 @@ footer{ padding:34px 0 60px; }
       </div>
       <div class="tb-actions">
         <a class="btn btn-ghost" href="mailto:james.wijaya898@gmail.com">Email</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/james-wijaya-6a333a414?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/james-wijaya-6a333a414" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/J-279" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button class="btn btn-primary" type="button" onclick="window.print()">Print/Save Webpage</button>
       </div>
@@ -492,29 +492,34 @@ footer{ padding:34px 0 60px; }
        ============================================================ -->
   <section id="internship" aria-labelledby="internship-title">
     <p class="eyebrow">04 — Internship</p>
-    <h2 class="section-title" id="internship-title">Laboratory internship — ICube, Université de Strasbourg</h2>
+    <h2 class="section-title" id="internship-title">Professional Experience</h2>
     <div class="project-grid">
 
       <article class="project-card">
-        <h3>UAV trajectory-following simulation — MBSE</h3>
-        <p>Staged Model-Based Systems Engineering workflow (Model-in-the-Loop -> Model Integration) for a fixed-wing UAV, built around the MATLAB UAV Toolbox
-          Waypoint Follower and a reduced-order guidance model, feeding toward a smoke-plume mapping ecosystem.</p>
+        <h3>Laboratory internship — ICube, Université de Strasbourg</h3>
+        <p>Staged Model-Based Systems Engineering workflow (Model-in-the-Loop → Model Integration) for a 
+          fixed-wing UAV trajectory-following simulation, built around the MATLAB UAV Toolbox Waypoint Follower 
+          and a reduced-order guidance model. Comparative trade study of proportional heading control vs. L1 
+          nonlinear guidance (Park, Deyst & How, 2004) against a corner/circle/sinusoidal/zig-zag test matrix 
+          with requirements-driven pass criteria, feeding toward a smoke-plume mapping ecosystem.</p>
         <div class="project-stack">
-          <span>MATLAB / Simulink</span><span>UAV Toolbox</span><span>MBSE</span><span>GNC</span>
+          <span>MATLAB / Simulink</span><span>UAV Toolbox</span><span>MBSE</span><span>GNC</span><span>Test & Verification</span>
         </div>
       </article>
 
       <article class="project-card">
-        <h3>Guidance law trade study — P vs. L1 nonlinear guidance</h3>
-        <p>Comparative evaluation of a first-principles proportional heading controller against L1
-          nonlinear guidance (Park, Deyst &amp; How, 2004) as candidate guidance laws, structured around a
-          corner / circle / sinusoidal / zig-zag test matrix with pass criteria tied to requirements.</p>
+        <h3>Electrical installer internship — SANTERNE Alsace</h3>
+        <p>Site electrician internship at Hôpital Civil, Strasbourg: cable routing and distribution-line 
+          installation (strong/weak current segregation, junction boxes, conduit runs), equipment fit-out 
+          (fire detection, LED/DALI lighting, sensors, intercom, HVAC controls), network verification with 
+          master/slave testers, systematic labeling (DYMO) for traceability, and as-built plan updates with 
+          precise notation of installed equipment and routing changes for design-office handover.</p>
         <div class="project-stack">
-          <span>Guidance &amp; Control</span><span>MATLAB</span><span>Test &amp; Verification</span>
+          <span>Electrical Installation</span><span>Building Services</span><span>Testing & Commissioning</span><span>Site Documentation</span>
         </div>
       </article>
 
-    </div>
+     </div>
   </section>
 
   <!-- ============================================================
@@ -527,9 +532,9 @@ footer{ padding:34px 0 60px; }
 
       <article class="project-card">
         <h3>Greenhouse temperature regulation — embedded PWM control</h3>
-        <p>Closed-loop thermal regulation system for a greenhouse: implemented PWM generation to drive
-          actuators, modelled the thermal regulation plant in MATLAB, and analysed/implemented both
-          on-off and PI control strategies, developed in C++ on Arduino IDE.</p>
+        <p>Closed-loop thermal regulation for a greenhouse: embedded PWM/sensor acquisition on an ATmega32U4,
+        two-state thermal modelling, and an on-off/hysteresis controller experimentally validated to ±1°C —
+        after an experimental identification attempt showed PI/PID synthesis wasn't yet justifiable.</p>
         <div class="project-stack">
           <span>MATLAB</span><span>PWM</span><span>PI Control</span><span>C++ / Arduino</span>
         </div>
@@ -603,19 +608,28 @@ footer{ padding:34px 0 60px; }
    MODULE A — COMPETENCY DATA (hardcoded, local, no network calls)
    ================================================================ */
 const COMPETENCIES = [
-  { id:"gnc",      name:"Guidance, Navigation & Control", category:"Control", doc:"UAV LF/HF MBSE — LF-MIL Report", docType:"Sim report", tags:["gnc","autopilot","waypoint follower"] },
-  { id:"mbse",     name:"Model-Based Systems Engineering", category:"Systems", doc:"MBSE Workflow Specification, Rev A", docType:"Spec", tags:["mbse","requirements","systems engineering"] },
-  { id:"matlab",   name:"MATLAB / Simulink", category:"Tools", doc:"UAV LF/HF MBSE — LF-MIL Report", docType:"Sim report", tags:["matlab","simulink","uav toolbox"] },
-  { id:"atmos",    name:"Atmospheric Modelling (COESA / ISA)", category:"Aerospace", doc:"Atmospheric Model Comparison Note", docType:"Technical note", tags:["coesa","isa","atmoscoesa","altitude"] },
-  { id:"guidance", name:"Guidance Law Design (L1 Nonlinear Guidance)", category:"Control", doc:"Guidance Law Trade Study", docType:"Trade study", tags:["l1 guidance","park deyst how","nonlinear"] },
-  { id:"embeddedc",name:"Embedded C", category:"Software", doc:"Strasbourg Lab Report", docType:"Lab report", tags:["embedded","c","microcontroller","firmware"] },
-  { id:"worldmod", name:"World Models", category:"Learning-based control", doc:"ETH Pre-Proposal", docType:"Pre-proposal", tags:["world models","learning-based control","model learning"] },
-  { id:"controls", name:"Advanced Control Theory (Automatique Avancée)", category:"Control", doc:"Paris-Saclay Coursework Portfolio", docType:"Coursework", tags:["control theory","automatique avancee","state space"] },
-  { id:"robotics", name:"Robotics Systems Integration", category:"Robotics", doc:"TUM MRBE Coursework Portfolio", docType:"Coursework", tags:["robotics","mechatronics","integration"] },
-  { id:"signals",  name:"Signal Processing", category:"Fundamentals", doc:"Strasbourg Rank-1 Semester Project", docType:"Project report", tags:["signal processing","filtering","dsp"] },
-  { id:"sysmod",   name:"Physical System Modelling & Conception", category:"Systems", doc:"E3A-SIAA Apprenticeship Brief", docType:"Programme brief", tags:["system modelling","conception","physical systems"] },
-  { id:"python",   name:"Python for Test & Data Analysis", category:"Tools", doc:"UAV Trajectory-Following Sim — Test Matrix", docType:"Test matrix", tags:["python","data analysis","test matrix"] },
-  { id:"humanoid", name:"Collaborative & Humanoid Robotics (interest)", category:"Robotics", doc:"Alternance Search — Sector Brief", docType:"Sector brief", tags:["humanoid robotics","collaborative robotics"] },
+ { id:"fft",      name:"FFT & Spectral Analysis", category:"Signal Processing", doc:"AI_Portofolio.pdf", docType:"Portfolio", tags:["fft","spectral analysis","windowing","dsp"] },
+ { id:"unsup",    name:"Unsupervised Clustering (K-means, DTW)", category:"Machine Learning", doc:"AI_Portofolio.pdf", docType:"Portfolio", tags:["k-means","dtw","cosine similarity","clustering","silhouette","gear","gearbox"] },
+ { id:"sup",      name:"Supervised Classification (KNN, Decision Trees)", category:"Machine Learning", doc:"AI_Portofolio.pdf", docType:"Portfolio", tags:["knn","decision tree","classification","confusion matrix","gear","gearbox"]  },
+ { id:"modeval",  name:"Model Evaluation & Critical Analysis", category:"Fundamentals", doc:"AI_Portofolio.pdf", docType:"Portfolio", tags:["precision","sensitivity","specificity","cross-validation","overfitting"] },
+ { id:"cadfea",     name:"Mechanical CAD, FEA & Actuator Sizing", category:"Mechanics & Fabrication", doc:"BipedalRobot_Portofolio.pdf", docType:"Portfolio", tags:["cad","fea","inventor","fdm","press-fit","actuator sizing","bench testing","motor","servomotor"] },
+ { id:"biprobcontrol", name:"State-Space Modeling & PI Control (Inverted Pendulum)", category:"Modeling & Control Theory", doc:"BipedalRobot_Portofolio.pdf", docType:"Portfolio", tags:["state-space","mimo","siso reduction","kinematics","inverted pendulum","pi control"] },
+ { id:"biprobtools", name:"CAD & Simulation Toolchain", category:"Methods & Software Tools", doc:"BipedalRobot_Portofolio.pdf", docType:"Portfolio", tags:["inventor","fusion 360","matlab","simulink","prototyping","technical reporting"] },     
+ { id:"greenembed",  name:"Embedded Electronics & Sensor Acquisition", category:"Embedded Electronics", doc:"Greenhouse_Portofolio.pdf", docType:"Portfolio", tags:["arduino","atmega32u4","timers","interrupts","pwm","adc","embedded c++"] },
+ { id:"greenctrl",   name:"On-Off Thermal Regulation & System Identification", category:"Control & Thermal", doc:"Greenhouse_Portofolio.pdf", docType:"Portfolio", tags:["on-off control","hysteresis","thermal modeling","system identification","overshoot analysis"] },
+ { id:"greentools",  name:"Embedded & Measurement Toolchain", category:"Methods & Tools", doc:"Greenhouse_Portofolio.pdf", docType:"Portfolio", tags:["embedded c++","matlab","oscilloscope","datasheet interpretation"] },
+ { id:"expval",  name:"Experimental Validation & Critical Analysis", category:"Methodology", doc:"Synthesis_Mechatronics.pdf", docType:"Synthesis", tags:["measurement protocol","actuator characterization","model-experiment validation","critical analysis"] },
+ { id:"engmeth", name:"Engineering Methodology & Technical Documentation", category:"Methodology", doc:"Synthesis_Mechatronics.pdf", docType:"Synthesis", tags:["iterative design","trade-off analysis","system limitations","technical documentation"] },   
+ { id:"uavmbse",     name:"MBSE Workflow & Requirements Engineering", category:"Systems", doc:"ReducedDroneModelling_Portofolio.pdf", docType:"Portfolio", tags:["mbse","requirements","functional decomposition","verification","validation"] },
+ { id:"uavguidance", name:"Guidance & Control — Waypoint Following, P & L1 Nonlinear Heading Control", category:"Control", doc:"ReducedDroneModelling_Portofolio.pdf", docType:"Portfolio", tags:["waypoint follower","guidance","l1 guidance","proportional heading control","lookahead","park deyst how"] },
+ { id:"uavsim",      name:"MATLAB / UAV Toolbox Simulation", category:"Tools", doc:"ReducedDroneModelling_Portofolio.pdf", docType:"Portfolio", tags:["matlab","uav toolbox","waypoint follower","reduced-order model"] },
+ { id:"hfarch",  name:"System Architecture & Requirements Traceability (VTOL)", category:"Systems", doc:"DroneModelling_Portofolio.pdf", docType:"Portfolio (in progress)", tags:["mbse","system composer","requirements traceability","block definition diagram","v-cycle","subsystem decomposition"] },
+ { id:"hfgps",   name:"Geodetic Coordinate Conversion (WGS84 LLA ↔ NED)", category:"Aerospace", doc:"DroneModelling_Portofolio.pdf", docType:"Portfolio (in progress)", tags:["wgs84","geodetic2ned","navigation toolbox","coordinate transformation"] },
+ { id:"hfdyn",   name:"6-DOF Nonlinear Flight Dynamics Modelling", category:"Modeling", doc:"DroneModelling_Portofolio.pdf", docType:"Portfolio (in progress)", tags:["6-dof","quaternion","aerodynamic model","propulsion model","dryden wind","aerospace blockset"] },   
+ { id:"elecinstall", name:"Low-Voltage Electrical Installation", category:"Electrical Installation", doc:"ElectricalInstaller_Report.pdf", docType:"Internship report", tags:["cable routing","wiring","color codes","strong current","weak current","conduits","junction boxes"] },
+ { id:"elecequip",   name:"Building Systems Equipment Installation", category:"Electrical Installation", doc:"ElectricalInstaller_Report.pdf", docType:"Internship report", tags:["fire detectors","intercoms","cameras","sensors","led lighting","dali","hvac control"] },
+ { id:"elecverif",   name:"Network Testing & Commissioning Verification", category:"Testing & Verification", doc:"ElectricalInstaller_Report.pdf", docType:"Internship report", tags:["master slave tester","functionality testing","commissioning","quality control"] },
+ { id:"elecdoc",     name:"Site Plan Reading & Technical Documentation", category:"Documentation", doc:"ElectricalInstaller_Report.pdf", docType:"Internship report", tags:["plan reading","technical documentation","labeling","as-built notation"] },
 ];
 
 /* ================================================================
