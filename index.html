@@ -357,6 +357,7 @@ footer{ padding:34px 0 60px; }
         <li><a href="#profile">Profile</a></li>
         <li><a href="#competencies">Competencies</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#internship">Internship</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#vault">Document vault</a></li>
       </ul>
@@ -487,11 +488,11 @@ footer{ padding:34px 0 60px; }
   </section>
 
   <!-- ============================================================
-       4. PROJECTS
+       4. INTERNSHIP
        ============================================================ -->
-  <section id="projects" aria-labelledby="projects-title">
-    <p class="eyebrow">04 — Projects</p>
-    <h2 class="section-title" id="projects-title">Available projects</h2>
+  <section id="internship" aria-labelledby="internship-title">
+    <p class="eyebrow">04 — Internship</p>
+    <h2 class="section-title" id="internship-title">Laboratory internship — ICube, Université de Strasbourg</h2>
     <div class="project-grid">
 
       <article class="project-card">
@@ -513,12 +514,34 @@ footer{ padding:34px 0 60px; }
         </div>
       </article>
 
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. PROJECTS
+       ============================================================ -->
+  <section id="projects" aria-labelledby="projects-title">
+    <p class="eyebrow">05 — Projects</p>
+    <h2 class="section-title" id="projects-title">Selected projects</h2>
+    <div class="project-grid">
+
       <article class="project-card">
-        <h3>[Project title]</h3>
-        <p>[Short description — problem, approach, outcome. Keep it to two to three sentences and lead
-          with the result.]</p>
+        <h3>Greenhouse temperature regulation — embedded PWM control</h3>
+        <p>Closed-loop thermal regulation system for a greenhouse: implemented PWM generation to drive
+          actuators, modelled the thermal regulation plant in MATLAB, and analysed/implemented both
+          on-off and PI control strategies, developed in C++ on Arduino IDE.</p>
         <div class="project-stack">
-          <span>[Tool]</span><span>[Tool]</span>
+          <span>MATLAB</span><span>PWM</span><span>PI Control</span><span>C++ / Arduino</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <h3>6-DOF biped robot — design, FEA &amp; balance control</h3>
+        <p>End-to-end robotics project: mechanical design, prototyping and FEA of a 6-DOF biped in
+          Inventor, servo-motor power/sizing analysis, quasi-static walking stability analysis, and
+          MATLAB modelling/simulation of the balance controller.</p>
+        <div class="project-stack">
+          <span>Autodesk Inventor</span><span>FEA</span><span>Servo Sizing</span><span>MATLAB</span>
         </div>
       </article>
 
@@ -526,10 +549,10 @@ footer{ padding:34px 0 60px; }
   </section>
 
   <!-- ============================================================
-       5. SECURE LOCAL DOCUMENT DEPOSIT VAULT
+       6. SECURE LOCAL DOCUMENT DEPOSIT VAULT
        ============================================================ -->
   <section id="vault" class="vault-section" aria-labelledby="vault-title">
-    <p class="eyebrow">05 — Admin only</p>
+    <p class="eyebrow">06 — Admin only</p>
     <h2 class="section-title" id="vault-title">Secure local document deposit vault</h2>
 
     <div class="vault-notice" role="note">
